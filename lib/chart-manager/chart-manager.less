@@ -1,0 +1,139 @@
+﻿@axisLabelFill: #9090B0;
+@axisLabelMinMaxFill: #A0A9A9;
+@axisLabelSize: 10px;
+@axisLabelMinMaxSize: 10px;
+@pieLabelFill: #8080A0;
+@chartFont: "open sans";
+@frozenBgColor: ghostwhite;
+@scalarUnitColor: #7AC4F1;
+@scalarValueColor: teal;
+@filteredOutColor: #C3C3C3;
+@filterBarUnitColor: #D2D2D2;
+@tooltipBorderColor: #9a9a9a;
+@tooltipBackgroundColor: rgba(248,248,248,0.85);
+@tooltipHeaderColor: #353535;
+@tooltipValueColor: #01abd4;
+
+.orderBy {
+    font-family: @chartFont;
+    font-weight: bold;
+    font-size: 11px;
+    position: absolute;
+    opacity: 0.5;
+    margin-top: -5px;
+    margin-left: 21px;
+
+    select {
+        margin: 2px 35px 1px 10px;
+        max-width: 215px;
+    }
+}
+
+.titleHr {
+    margin: 5px 0 5px 15px;
+}
+
+.dc-chart,
+.genericOneFilterChart {
+    margin: 15px 5px 0 0;
+    padding: 0 4px 0 0;
+    //border:1px dashed gray;
+    g.row text {
+        fill: darkslategray;
+    }
+
+    text {
+        font-family: @chartFont;
+    }
+
+    .title, .filter {
+        margin-left: 20px;
+        margin-right: 6px;
+    }
+
+    .filter {
+        font-size: 10px;
+        display: block;
+        padding-bottom: 5px;
+    }
+
+    .one-filter-title,
+    .reset-btn {
+        display: inline-block;
+        padding-bottom: 6px;
+    }
+
+    a .reset {
+        margin-right: 5px;
+        font-size: 11px;
+        font-weight: normal;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        border-radius: 7px;
+    }
+    // needed because nvd3 css conflicts with how dc.js shows svg elements
+    svg:not(.unit-header,.axis) {
+        width: auto;
+    }
+
+    .axis {
+        .tick {
+            text {
+                // make axis tick text lighter
+                fill: @filterBarUnitColor;
+                font-size: @axisLabelSize;
+                font: 10px sans-serif;
+                /* Makes it so the user can't accidentally click and select text that is meant as a label only */
+                -webkit-user-select: none; /* Chrome/Safari */
+                -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* IE10 */
+                -o-user-select: none;
+                user-select: none;
+                pointer-events: none;
+            }
+
+            line {
+                stroke: @filterBarUnitColor;
+                shape-rendering: crispEdges;
+            }
+
+            line.grid-line {
+                // make grid lighter
+                stroke: #ccc;
+            }
+        }
+
+        path.domain {
+            stroke: @filterBarUnitColor;
+            fill: none;
+            shape-rendering: crispEdges;
+        }
+    }
+}
+
+div.nvd3,
+div.scalarChart {
+    .title strong {
+        margin: 0 10px 0 20px;
+        display: inline-block;
+    }
+}
+
+// Transformation
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

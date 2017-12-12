@@ -1,0 +1,33 @@
+﻿<!-- build a single NVD3 generic chart -->
+
+<div ng-if="null != chart.crossfilterGrouping.dimension && null != chart.chartVm.nvd3Data && null != chart.chartVm.nvd3Options"
+     class="nvd3">
+    <div ng-if="!chart.hideTitle" class="title">
+        <strong>{{chart.title}}</strong>
+    </div>
+    <span ng-if="!chart.hideTitle && chart.orderFuncs.length > 1"
+          style="display: none"
+          showonhoverparent
+          class="orderBy pull-right">
+        Order by: <select class="selectpicker"
+                          ng-model="chart.orderFunc"
+                          ng-options="orderFunc.name for orderFunc in chart.orderFuncs"
+                          ng-change="chart.chartVm.reOrderData(chart.orderFunc)"></select>
+    </span>
+    <div ng-if="chart.metricToggleGroups && chart.metricToggleGroups.length > 1"
+         class="metric-toggle">
+        <div ng-repeat="grp in chart.metricToggleGroups track by $index"
+             class="metric-group-selector">
+            <div ng-click="chart.chartVm.setSelectedMetric($index)"
+                 ng-class="{true:'active-metric', false:'inactive-metric'}[$index==chart.chartVm.selectedMetricGroupIndex]">
+                {{ chart.chartVm.metricToggleGroups[$index].label }}
+            </div>
+        </div>
+    </div>
+
+    <hr class="titleHr" ng-if="!chart.hideTitle" />
+    <nvd3 options="chart.chartVm.nvd3Options"
+          data="chart.chartVm.nvd3Data"
+          config="chart.chartVm.ngNvd3Config">
+    </nvd3>
+</div>

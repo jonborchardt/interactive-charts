@@ -1,0 +1,9 @@
+﻿<!-- build a grid of dynamic generic charts -->
+
+<div ng-repeat="chartRows in group.chartRows" class="row">
+    <div ng-repeat="chartColumns in chartRows.chartColumns" class="column">
+        <div ng-repeat="chartBase in chartColumns.charts">
+            <interactive-chart chart="chartBase" in-accordion="false"></interactive-chart>
+        </div>
+    </div>
+</div>

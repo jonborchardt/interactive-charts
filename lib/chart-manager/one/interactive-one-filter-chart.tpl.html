@@ -1,0 +1,130 @@
+﻿<!-- build a single One Filter generic chart -->
+
+<div ng-if="null != chart.crossfilterGrouping.dimension && null !=chart.chartVm.oneFilterOptions"
+     class="genericOneFilterChart"
+     ng-style="{'width': chart.chartVm.width,
+         'margin-top': chart.chartVm.margin.top,
+         'margin-right': chart.chartVm.margin.right,
+         'margin-bottom': chart.chartVm.margin.bottom,
+         'margin-left': chart.chartVm.margin.left}"
+     ng-cloak>
+    <div ng-if="'false'==inAccordion && !chart.hideTitle"
+         class="title one-filter-title">
+        <strong>{{chart.title}}</strong>
+    </div>
+    <div class="reset-btn pull-right">
+        <a ng-if="'false'==inAccordion && !chart.hideReset && chart.chartVm.hasFilters"
+           ng-click="chart.chartVm.filterAll()"
+           class="reset"
+           href="javascript:;">
+            <span class="label label-primary">RESET</span>
+        </a>
+    </div>
+    <div class="clearfix"></div>
+    <hr class="titleHr" ng-if="'false'==inAccordion && !chart.hideTitle" />
+
+    <div ng-if="!chart.chartVm.showXAxis && chart.chartVm.unitHeader">
+        <span class="pull-right unit-header"
+              ng-bind="chart.chartVm.unitHeader"></span>
+    </div>
+
+    <table class="filter-area"
+           ng-style="{'width': chart.chartVm.width}">
+        <tr ng-repeat="row in chart.crossfilterGrouping.group.top(99999).reverse()"
+            class="selectable-row"
+            ng-click="chart.chartVm.rowClicked($event, row)"
+            ng-class="{'filtered-out':!chart.chartVm.keyValues[chart.chartVm.getKeyString(row.key)]}"
+            ng-cloak>
+            <td class="checkbox-wrapper" ng-style="{'width': '16px'}">
+                <div ng-if="chart.chartVm.useOneCheckbox"
+                     class="one-checkbox-xs"
+                     ng-model="chart.chartVm.keyValues[chart.chartVm.getKeyString(row.key)]"
+                     ng-checked="chart.chartVm.keyValues[chart.chartVm.getKeyString(row.key)]"
+                     one-checkbox></div>
+                <input ng-if="!chart.chartVm.useOneCheckbox"
+                       type="checkbox"
+                       ng-model="chart.chartVm.keyValues[chart.chartVm.getKeyString(row.key)]"
+                       ng-checked="chart.chartVm.keyValues[chart.chartVm.getKeyString(row.key)]"/>
+            </td>
+
+            <!-- bar label -->
+            <td class="dimension-name"
+                ng-style="{'width': chart.chartVm.width - chart.chartVm.barWidth - 32}">
+                <!-- dimension name tooltip if name is truncated -->
+                <div class="dimension-name-tooltip">
+                    <div class="arrow-container">
+                        <span><i class="glyphicon glyphicon-menu-left"></i></span>
+                    </div>
+                    <span class="key" ng-bind="chart.chartVm.getKeyString(row.key)"></span>
+                </div>
+                {{chart.chartVm.getKeyString(row.key)}}
+            </td>
+
+            <td class="filter-bar has-tooltip">
+                <!-- bar tooltip -->
+                <div class="tooltip-text">
+                    <div class="inner-tooltip-text">
+                        <span class="key">{{chart.chartVm.getKeyString(row.key)}}</span>
+                        <span class="value">{{chart.crossfilterGrouping.metrics[0].longFormatFunc(chart.crossfilterGrouping.metrics[0].valueFunc(row))}}</span>
+                        <div class="total">
+                            <span class="key">Total</span>
+                            <span class="value">{{chart.crossfilterGrouping.metrics[0].longFormatFunc(chart.chartVm.summaryData.total)}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- bar representing a dimension -->
+                <svg ng-attr-width="{{chart.chartVm.barWidth}}"
+                     ng-attr-height="{{chart.chartVm.barHeight}}">
+                    <g id="g_{{$index}}">
+                        <rect class="background"
+                              x="0"
+                              y="2px"
+                              ng-attr-width="{{chart.chartVm.barWidth - 6}}"
+                              ng-attr-height="{{chart.chartVm.barHeight - 2}}"
+                              fill="{{chart.colors[2]}}">
+                        </rect>
+                        <g>
+                            <rect class="foreground"
+                                  ng-if="chart.crossfilterGrouping.metrics[0].valueFunc(row)"
+                                  x="0"
+                                  y="2px"
+                                  ng-attr-width="{{(chart.chartVm.barWidth)*chart.crossfilterGrouping.metrics[0].valueFunc(row)/chart.chartVm.summaryData.max > 6 ? (chart.chartVm.barWidth)*chart.crossfilterGrouping.metrics[0].valueFunc(row)/chart.chartVm.summaryData.max - 6 : 1}}"
+                                  ng-attr-height="{{chart.chartVm.barHeight - 2}}"
+                                  fill="{{chart.colors[1]}}">
+                            </rect>
+                        </g>
+                        <text class="value"
+                              ng-if="chart.chartVm.showValueText"
+                              x="5"
+                              y="18px"
+                              ng-attr-width="{{chart.chartVm.barWidth}}"
+                              ng-attr-height="{{chart.chartVm.barHeight}}"
+                              fill="{{chart.colors[0]}}"
+                              font-size="12px">
+                            {{chart.crossfilterGrouping.metrics[0].shortFormatFunc(chart.crossfilterGrouping.metrics[0].valueFunc(row))}}
+                        </text>
+                    </g>
+                </svg>
+            </td>
+        </tr>
+    </table>
+
+    <!-- unit and axis -->
+    <div ng-if="chart.chartVm.showXAxis">
+        <div class="axis-container">
+            <svg ng-attr-width="{{chart.chartVm.width}}"
+                 ng-attr-height="{{chart.chartVm.barHeight}}">
+                <text class="unit-on-axis"
+                      ng-if="chart.chartVm.showXAxis"
+                      text-anchor="end"
+                      ng-attr-x="{{chart.chartVm.width - chart.chartVm.barWidth}}"
+                      y="0"
+                      dx="-1em"
+                      dy="1.74em">{{chart.chartVm.unitHeader}}</text>
+                <g class="axis"
+                   ng-attr-transform="translate({{chart.chartVm.width - chart.chartVm.barWidth}}, 0)"></g>
+            </svg>
+        </div>
+    </div>
+</div>

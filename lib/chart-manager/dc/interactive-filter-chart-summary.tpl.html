@@ -1,0 +1,18 @@
+﻿<!-- build dc filter summary chart -->
+<div ng-if="null!=vm.totalNonHiddenRecords && null!=vm.nonHiddenInFilter && null != vm.dimension && null != vm.group"
+     dc-chart="dataCount"
+     dc-dimension="vm.dimension"
+     dc-group="vm.group"
+     class="dc-data-count dc-chart filterChartSummary">
+    <span ng-if="vm.totalNonHiddenRecords != vm.nonHiddenInFilter"
+          class="innerSpan">
+        <strong>{{vm.nonHiddenInFilter}}</strong>&nbsp;selected out of&nbsp;<strong>{{vm.totalNonHiddenRecords}}</strong>&nbsp;{{vm.recordName||'results'}}&nbsp;
+        <a href="javascript:;" ng-click="vm.resetAll(); $event.stopPropagation()">
+            <span class="label label-primary">reset all&nbsp;<span class="glyphicon glyphicon-filter" aria-hidden="true"></span></span>
+        </a>
+    </span>
+    <span ng-if="vm.totalNonHiddenRecords == vm.nonHiddenInFilter"
+          class="innerSpan">
+        All&nbsp;{{vm.recordName||'results'}}&nbsp;selected. Please click on a filter to narrow&nbsp;{{vm.recordName||'results'}}.
+    </span>
+</div>

@@ -1,0 +1,93 @@
+@import '../chart-manager.less';
+
+// used to hide points on line chart
+.hidePoints .nv-line .nvd3.nv-scatter .nv-groups .nv-point {
+    fill-opacity: 0 !important;
+}
+
+// move labels in vertical cahrts
+.nv-multiBarHorizontalChart {
+    .nv-x {
+        transform: translate(0,8px);
+        -ms-transform: translate(0,8px); /* IE 9 */
+        -webkit-transform: translate(0,8px); /* Safari and Chrome */
+        -o-transform: translate(0,8px); /* Opera */
+        -moz-transform: translate(0,8px); /* Firefox */
+    }
+}
+
+nvd3 {
+    text {
+        font-family: @chartFont;
+    }
+
+    .title {
+        font-weight: bold;
+    }
+    // show points on a line chart, allows us to show data when only one point is on
+    .nv-line .nvd3.nv-scatter .nv-groups .nv-point {
+        fill-opacity: 0.8 !important;
+    }
+
+    .nv-axis {
+        // make axis tick text lighter
+        fill: @axisLabelFill;
+
+        .tick text {
+            fill: @axisLabelFill;
+            font-size: @axisLabelSize;
+        }
+
+        .tick line {
+            stroke: #f0f0f0;
+        }
+
+        .nv-axisMaxMin text {
+            fill: @axisLabelMinMaxFill;
+            font-size: @axisLabelMinMaxSize;
+        }
+    }
+
+    .nv-pieLabels {
+        .nv-label text {
+            // make labels lighter
+            fill: @pieLabelFill !important;
+            font-size: @axisLabelSize;
+        }
+    }
+
+    div.nvtooltip {
+        padding: 5px;
+
+        h4, p {
+            // keep tooltip from being too long
+            text-align: center;
+            white-space: normal;
+            margin: 0 auto;
+            padding: 0 5px;
+            max-width: 240px;
+        }
+
+        p {
+            margin: -3px auto;
+            color: #654321;
+        }
+    }
+}
+
+.metric-toggle {
+    display: flex; // buttons in metric group toggle in the same row
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    .metric-group-selector {
+        display: inline-block;
+        min-width: 64px;
+        border: 1px solid lightgray;
+    }
+
+    .inactive-metric {
+        cursor: pointer; // default cursor for already selected, pointer for other available options
+    }
+}

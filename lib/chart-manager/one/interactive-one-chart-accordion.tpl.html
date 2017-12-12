@@ -1,0 +1,39 @@
+﻿<!-- build an accordion of dynamic One charts -->
+
+<div class="one-accordion panel-group"
+     ng-model="activePanels"
+     bs-collapse
+     data-disallow-toggle="false"
+     data-allow-multiple="true"
+     role="tablist">
+    <div ng-repeat="(cIndex, chartRows) in group.chartRows">
+        <!-- accordion assumes a single column per row -->
+        <div ng-repeat="chartBase in chartRows.chartColumns[0].charts"
+             class="panel panel-default"
+             ng-if="null != chartBase.crossfilterGrouping.dimension && null != chartBase.chartVm.oneFilterOptions">
+            <div class="panel-heading"
+                 data-ng-class="{'collapsed' : activePanels.indexOf(cIndex) === -1}"
+                 role="tab"
+                 bs-collapse-toggle>
+                <h2 class="panel-title title accordion-toggle" ng-if="!chartBase.hideTitle">
+                    <strong>{{chartBase.title}}</strong>
+                </h2>
+                <div class="reset-btn">
+                    <a ng-if="!chartBase.hideReset && chartBase.chartVm.hasFilters"
+                       ng-click="chartBase.chartVm.filterAll(); $event.stopPropagation()"
+                       class="reset"
+                       href="javascript:;">
+                        <span class="pull-right label label-primary">RESET</span>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-collapse"
+                 role="tabpanel"
+                 bs-collapse-target>
+                <div class="panel-body">
+                    <interactive-chart chart="chartBase" in-accordion="true"></interactive-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿<!-- build a single dynamic generic chart -->
+
+<div class="chart chart_{{chart.chartVm.id}} {{chart.chartVm.classes}}">
+    <div ng-if="null != chart.crossfilterGrouping.dimension && null != chart.chartVm.dcPostSetupChart && null !=chart.chartVm.dcOptions">
+        <interactive-dc-chart chart="chart"></interactive-dc-chart>
+    </div>
+    <div ng-if="null != chart.crossfilterGrouping.dimension && null != chart.chartVm.nvd3Data && null != chart.chartVm.nvd3Options">
+        <interactive-nvd3-chart chart="chart"></interactive-nvd3-chart>
+    </div>
+    <div ng-if="null != chart.crossfilterGrouping.dimension && null != chart.chartVm.scalarChartData">
+        <interactive-scalar-chart chart="chart" ng-class="null != chart.chartVm.frozenData?'frozen':''"></interactive-scalar-chart>
+    </div>
+    <div ng-if="null != chart.crossfilterGrouping.dimension && null != chart.chartVm.oneFilterOptions">
+        <interactive-one-filter-chart chart="chart" in-accordion={{inAccordion}}></interactive-one-filter-chart>
+    </div>
+</div>

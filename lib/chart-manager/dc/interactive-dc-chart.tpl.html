@@ -1,0 +1,19 @@
+﻿<!-- build a single DC generic chart -->
+
+<div ng-if="null != chart.crossfilterGrouping.dimension && null != chart.chartVm.dcPostSetupChart && null !=chart.chartVm.dcOptions"
+     class="genericDcChart"
+     dc-chart={{chart.chartVm.chartType}}
+     dc-options="chart.chartVm.dcOptions"
+     dc-post-setup-chart="chart.chartVm.dcPostSetupChart">
+    <div ng-if="!chart.hideTitle"
+         class="title"
+         ng-style="{width:{{chart.chartVm.width+chart.chartVm.margins.left+chart.chartVm.margins.right}}}">
+        <strong>{{chart.title}}</strong>
+    </div>
+    <a ng-if="!chart.hideReset" class="reset" href="javascript:;" style="display: none;">
+        <span class="label label-primary pull-right">reset <span class="glyphicon glyphicon-filter" aria-hidden="true"></span></span>
+    </a>
+    <span ng-if="!chart.hideFilter" class="filter"></span>
+    <hr class="titleHr" ng-if="!chart.hideTitle" />
+    <div class="clearfix"></div>
+</div>

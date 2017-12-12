@@ -1,0 +1,79 @@
+﻿<!-- build a single SCALAR generic chart -->
+
+<div ng-if="null != chart.crossfilterGrouping.dimension && null != chart.chartVm.scalarChartData && !chart.hideChart"
+     class="scalarChart">
+    <div ng-if="!chart.hideTitle"
+         class="title">
+        <strong>{{chart.title}}</strong>
+    </div>
+    <hr class="titleHr" ng-if="!chart.hideTitle" />
+
+    <div ng-if="!chart.chartVm.frozenData"
+         class="scalar-row">
+        <!-- grouped metrics -->
+        <div ng-repeat="group in chart.chartVm.metricGroups track by $index"
+             class="metric-group">
+            <!-- metric rows -->
+            <div class="innerBox"
+                 ng-hide="group.hide"
+                 ng-style="{'width': chart.chartVm.width+'px', 'height': chart.chartVm.height+'px', 'margin': chart.chartVm.margin }">
+                <div class="key" title="{{ group.headerTooltip }}">{{ group.groupTitle ? group.groupTitle : group.groupKey }}</div>
+                <div ng-repeat="dataPoint in chart.chartVm.scalarChartData track by $index"
+                     ng-if="dataPoint.groupId === group.groupKey && (!dataPoint.styles || !dataPoint.styles.isChangeIndicator)"
+                     ng-hide="dataPoint.hide"
+                     title="{{dataPoint.shortValue}}">
+                    <div ng-class="dataPoint.styles && dataPoint.styles.key ? 'rowKey ' + dataPoint.styles.key : 'rowKey'">{{dataPoint.longValue}}</div>
+                    <div ng-if="dataPoint.unit"
+                         ng-class="dataPoint.styles && dataPoint.styles.unit ? 'rowUnit ' + dataPoint.styles.unit : 'rowUnit '">{{dataPoint.unit}}</div>
+                </div>
+            </div>
+            <!-- differentials for metric rows -->
+            <div class="innerBox diff-container"
+                 ng-if="group.hasChangeIndicator"
+                 ng-hide="group.hide"
+                 ng-style="{'width': chart.chartVm.width+'px'}">
+                <div ng-repeat="dataPoint in chart.chartVm.scalarChartData track by $index"
+                     ng-if="dataPoint.groupId === group.groupKey && dataPoint.styles && dataPoint.styles.isChangeIndicator">
+                    <span ng-if="dataPoint.value>0"><i class="glyphicon glyphicon-triangle-top"></i></span>
+                    <span ng-if="dataPoint.value<0"><i class="glyphicon glyphicon-triangle-bottom"></i></span>
+                    <span ng-if="dataPoint.value==0"><i class="glyphicon glyphicon-minus"></i></span>
+                    <span>{{dataPoint.longValue}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ungrouped metrics -->
+        <div ng-if="!dataPoint.groupId"
+             ng-repeat="dataPoint in chart.chartVm.scalarChartData track by $index"
+             ng-hide="chart.chartVm.scalarChartBase.hideUngroupedMetrics || dataPoint.hide"
+             class="innerBox" title="{{dataPoint.shortValue}}"
+             ng-style="{'width': chart.chartVm.width+'px', 'height': chart.chartVm.height+'px', 'margin': chart.chartVm.margin }">
+            <div class="key">{{dataPoint.key}}</div>
+            <div class="value">{{dataPoint.longValue}}</div>
+        </div>
+    </div>
+
+    <!-- frozenScalarChart -->
+    <div ng-if="chart.chartVm.frozenData"
+         class="scalar-row">
+        <div ng-if="chart.chartVm.metricGroups">
+            <div ng-repeat="group in chart.chartVm.metricGroups"
+             ng-style="{'width': chart.chartVm.width+'px', 'height': chart.chartVm.height+'px', 'margin': chart.chartVm.margin }"  class="innerBox">
+             <div class="">
+                <div class="key" title="{{ group.headerTooltip }}">{{ group.groupTitle ? group.groupTitle : group.groupKey }}</div>
+                <div class="value" ng-repeat="li in group.values" title="{{li.shortValue}}">
+                    {{li.longValue}}
+                    <span ng-if="li.unit" class="unit">{{li.unit}}</span>
+                </div>
+             </div>
+            </div>
+        </div>
+
+        <div ng-repeat="dataPoint in chart.chartVm.scalarChartData" title="{{dataPoint.shortValue}}"
+             ng-if="!dataPoint.hide"
+             ng-style="{'width': chart.chartVm.width+'px', 'height': chart.chartVm.height+'px', 'margin': chart.chartVm.margin }" class="innerBox" >
+            <div class="key">{{dataPoint.key}}</div>
+            <div class="value">{{dataPoint.longValue}}</div>
+        </div>
+    </div>
+</div>
