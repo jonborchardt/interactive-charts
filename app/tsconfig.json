@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "target": "ES5",
+    "outFile": "app/interactive-charts.js",
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "declaration": true,
+    "noEmitOnError": true,
+    "moduleResolution": "node",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  }
+}

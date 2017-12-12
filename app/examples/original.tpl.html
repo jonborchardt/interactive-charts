@@ -1,0 +1,25 @@
+﻿<div class="container">
+    <div class="col-md-12 row">
+        <filter-chart-summary vm="vm.tvReportCharts.filterChartSummaryVm"></filter-chart-summary>
+        <interactive-chart-list group="vm.tvReportCharts.chartRowManager.getChartGroup(vm.enums.chartGroupName.Main)"></interactive-chart-list>
+        Note: we dont expect the chart below to be correctly controlled by the chart above... 2 onefilter charts of the same dimension are not currently supported
+        <interactive-one-chart-accordion group="vm.tvReportCharts.chartRowManager.getChartGroup(vm.enums.chartGroupName.Accordion)"></interactive-one-chart-accordion>
+    </div>
+</div>
+
+<hr>
+<div class="container">
+    <div class="col-md-12 row">
+        <h2>Inline Chart Test</h2>
+        <br>
+        Quisque pulvinar sed nibh in accumsan
+        <interactive-chart style="display: inline-block; vertical-align: middle" chart="vm.tvReportCharts.chartManager.getChart(vm.enums.chartName.Spark3)"></interactive-chart>
+        quis consectetur velit, eget lobortis mi. Curabitur eu rutrum neque, quis imperdiet lacus. Nulla in lectus magna. Phasellus sed laoreet nulla, a dapibus eros.
+        Mauris velit sem, suscipit hendrerit accumsan vel, blandit sit amet ex. Vivamu
+        <interactive-chart style="display: inline-block; vertical-align: middle" chart="vm.tvReportCharts.chartManager.getChart(vm.enums.chartName.Spark4)"></interactive-chart>
+        lobortis neque sit amet, auctor sapien. Morbi tristique arcu a nulla dignissim, vitae rhoncus enim congue. Donec at risus urna. Nulla mattis
+        <interactive-chart style="display: inline-block; vertical-align: middle" chart="vm.tvReportCharts.chartManager.getChart(vm.enums.chartName.Spark5)"></interactive-chart>
+        dapibus, non hendrerit nisl eleifend. Nam posuere in lorem eget consequat.Morbi non elit dolor. Integer nec dolor eros.
+    </div>
+    <a download="content.txt" ng-href="{{vm.generatedTs}}">download</a>
+</div>

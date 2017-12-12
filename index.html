@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Interactive Charts Example</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600italic,600,700italic,700,800italic,800">
+    <link rel="stylesheet" href="app/interactive-charts.css">
+</head>
+
+<body role="document">
+    <script src="app/interactive-charts.js"></script>
+    <div class="menu">
+        <a ui-sref-active="active" ui-sref="home">Home</a> |
+        <a ui-sref-active="active" ui-sref="crossfilterOnly">Crossfilter Only</a> |
+        <a ui-sref-active="active" ui-sref="secondaryDimension">Secondary Dimension</a> |
+        <a ui-sref-active="active" ui-sref="rangeOnlyBoxPlotChart">Range Only Box Plot Chart</a> |
+        <a ui-sref-active="active" ui-sref="original">Original</a>
+    </div>
+    <div class="main-view" ui-view></div>
+</body>
+
+</html>

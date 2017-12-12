@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "target": "ES5",
+    "outFile": "dist/interactive-charts.js",
+    "declaration": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [
+    "app",
+    "test",
+    "dist",
+    "node_modules",
+    "vendor",
+    "typings/globals"
+  ]
+}

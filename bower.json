@@ -1,0 +1,34 @@
+{
+  "name": "adap-charts",
+  "version": "3.3.1",
+  "description": "Interactive Charts",
+  "license": "AOL Internal",
+  "private": true,
+  "authors": [
+    "jon.borchardt@teamaol.com"
+  ],
+  "main": [
+    "dist/adap-charts.js",
+    "dist/adap-charts.tpl.js",
+    "dist/adap-charts.css"
+  ],
+  "ignore": [
+    "build",
+    "app",
+    "lib",
+    "vendor",
+    "test",
+    "**/.*",
+    "**/*.csproj",
+    "**/*.sln",
+    "**/*.html",
+    "**/*.config",
+    "gulpfile/.js",
+    "tsd.json",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://code.onetv.aol.com/scm/tvbaseui/charts.git"
+  }
+}

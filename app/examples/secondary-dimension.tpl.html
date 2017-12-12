@@ -1,0 +1,164 @@
+﻿<div class="crossfilter-only">
+    <div class="page-title">
+        <div class="header">Secondary Dimension</div>
+        <div class="content">The charting library allows for charting against a secondary dimension
+        </div>
+    </div>
+
+    <div class="section-header">
+        <div class="header">Examples</div>
+    </div>
+
+    <div class="section">
+        <div class="header">01</div>
+        <div class="content">
+            <div class="inner-header">Stream chart using secondary dimension</div>
+            <div class="inner-content">
+                <interactive-chart chart="vm.chartManager.getChart('StreamChart_ID')"></interactive-chart>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="header">02</div>
+        <div class="content">
+            <div class="inner-header">Bar chart using secondary dimension</div>
+            <div class="inner-content">
+                <interactive-chart chart="vm.chartManager.getChart('BarChart_ID')"></interactive-chart>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">
+        <div class="header">Code</div>
+    </div>
+
+    <div class="section">
+        <div class="header">01</div>
+        <div class="content">
+            <div class="inner-header">Define a set of data</div>
+            <div class="inner-content">
+                <div hljs hljs-language="typescript" hljs-no-escape>
+                    <pre>[white space fix, will be removed]
+this.data = [
+        { id: 0, date: moment("01/12/16", "MM/DD/YYYY"), user: "Jon", amount: 7 },
+        { id: 1, date: moment("01/12/16", "MM/DD/YYYY"), user: "Sam", amount: 13 },
+        { id: 2, date: moment("01/12/16", "MM/DD/YYYY"), user: "Jill", amount: 14 },
+        { id: 3, date: moment("01/13/16", "MM/DD/YYYY"), user: "Jon", amount: 17 },
+        { id: 4, date: moment("01/13/16", "MM/DD/YYYY"), user: "Sam", amount: 19 },
+        { id: 5, date: moment("01/13/16", "MM/DD/YYYY"), user: "Jill", amount: 21 },
+        { id: 6, date: moment("01/14/16", "MM/DD/YYYY"), user: "Jon", amount: 11 },
+        { id: 7, date: moment("01/14/16", "MM/DD/YYYY"), user: "Sam", amount: 1 },
+        { id: 8, date: moment("01/14/16", "MM/DD/YYYY"), user: "Jill", amount: 6 },
+        { id: 10, date: moment("01/15/16", "MM/DD/YYYY"), user: "Jon", amount: 11 },
+        { id: 11, date: moment("01/15/16", "MM/DD/YYYY"), user: "Sam", amount: 1 },
+        { id: 12, date: moment("01/15/16", "MM/DD/YYYY"), user: "Jill", amount: 1 }
+    ]</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="header">02</div>
+        <div class="content">
+            <div class="inner-header">Define a set of Keys</div>
+            <div class="inner-content">
+                <div hljs hljs-language="typescript" hljs-no-escape>
+                    <pre>[white space fix, will be removed]
+this.keyMetricManager.addKey(
+    KeyName.Id,
+    "Id",
+    (d: number) => { return "" + d; },
+    (d: ICrossfilterOnlyData) => { return d.id; },
+    (d: number) => { return d; },
+    CrossfilterManager.ValueType.Number
+);
+this.keyMetricManager.addKey(
+    KeyName.User,
+    "User",
+    (d: string) => { return d; },
+    (d: ICrossfilterOnlyData) => { return d.user; },
+    (d: string) => { return d; },
+    CrossfilterManager.ValueType.String
+);
+this.keyMetricManager.addKey(
+    KeyName.Day,
+    "Day",
+    (d: Date) => { return moment(d).format("MM/DD/YYYY"); },
+    (d: ICrossfilterOnlyData) => { return d.date.clone(); },
+    (d: moment.Moment) => { return d.startOf("day"); },
+    CrossfilterManager.ValueType.DateTime
+)</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="header">03</div>
+        <div class="content">
+            <div class="inner-header">Define one or more Metrics</div>
+            <div class="inner-content">
+                <div hljs hljs-language="typescript" hljs-no-escape>
+                    <pre>[white space fix, will be removed]
+this.keyMetricManager.addMetric(
+    MetricName.Amount,
+    "Amount",
+    (d: number) => { return Util.commaFormatter[0](d); },
+    (p: Util.ILabelKeyValueTuple) => {
+        return p.value.value[MetricName.Amount];
+    },
+    (d: ICrossfilterOnlyData) => { return d.amount; },
+    (d: ICrossfilterOnlyData) => { return 1; },
+    (d: number) => {
+    return Util.commaFormatter[0](d); }
+)</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="header">04</div>
+        <div class="content">
+            <div class="inner-header">Define Chart Manager and register default charts</div>
+            <div class="inner-content">
+                <div hljs hljs-language="typescript" hljs-no-escape>
+                    <pre class="hide-first">[white space fix, will be removed]
+this.chartManager = new ChartManager.ChartManager
+    (this.$rootScope, this.crossfilterManager, eventManager);
+// register charts we will use, we could register any supported
+// charting library, but we will use the default one
+Defaults.registerDefaultCharts(this.chartManager);</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="header">05</div>
+        <div class="content">
+            <div class="inner-header">Add charts to chart manager with secondary grouping</div>
+            <div class="inner-content">
+                <div hljs hljs-language="typescript" hljs-no-escape>
+                    <pre>[white space fix, will be removed]
+this.chartManager.addChart("StreamChart_ID", &lt;ChartManager.Nvd3Chart.IExtendedStackedAreaChart$lt;ISimpleData>>{
+    title: "Spend per User by Day",
+    chartType: ChartManager.ChartType.stackedAreaChart,
+    crossfilterGrouping: new CrossfilterManager.CrossfilterGrouping&lt;ISimpleData>(
+        this.crossfilterManager,
+        KeyName.User,
+        [MetricName.Amount],
+        KeyName.Day // secondary grouping id
+    ),
+    sizeData: &lt;Util.ISizeData>{
+        width: ExampleBuilderService.defaultChartWidth,
+        height: ExampleBuilderService.defaultChartHeight
+    }
+})</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

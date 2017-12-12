@@ -1,0 +1,166 @@
+﻿<div class="crossfilter-only">
+    <div class="page-title">
+        <div class="header">Crossfilter Only</div>
+        <div class="content">The charting library can be used to produce a crossfilter object for use with the charting library of your choice
+        </div>
+    </div>
+
+    <div class="section-header">
+        <div class="header">Examples</div>
+    </div>
+
+    <div class="section">
+        <div class="header">01</div>
+        <div class="content">
+            <div class="inner-header">Direct use of DC.js to create a filter control using our data</div>
+            <div class="inner-content">
+                <div id="simple-dc-test"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="header">02</div>
+        <div class="content">
+            <div class="inner-header">Direct use of NVD3 to display our data</div>
+            <div class="inner-content">
+                <nvd3 options="vm.options" data="vm.output" config="vm.ngNvd3Config"></nvd3>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">
+        <div class="header">Code</div>
+    </div>
+
+    <div class="section">
+        <div class="header">01</div>
+        <div class="content">
+            <div class="inner-header">Define a set of data</div>
+            <div class="inner-content">
+                <div hljs hljs-language="typescript" hljs-no-escape>
+                    <pre>[white space fix, will be removed]
+this.data = [
+    { id: 0, date: moment("01/12/16", "MM/DD/YYYY"), user: "Jon", amount: 7 },
+    { id: 1, date: moment("01/12/16", "MM/DD/YYYY"), user: "Sam", amount: 13 },
+    { id: 2, date: moment("01/12/16", "MM/DD/YYYY"), user: "Jill", amount: 14 },
+    { id: 3, date: moment("01/13/16", "MM/DD/YYYY"), user: "Jon", amount: 17 },
+    { id: 4, date: moment("01/13/16", "MM/DD/YYYY"), user: "Sam", amount: 19 },
+    { id: 5, date: moment("01/13/16", "MM/DD/YYYY"), user: "Jill", amount: 21 },
+    { id: 6, date: moment("01/14/16", "MM/DD/YYYY"), user: "Jon", amount: 11 },
+    { id: 7, date: moment("01/14/16", "MM/DD/YYYY"), user: "Sam", amount: 1 },
+    { id: 8, date: moment("01/14/16", "MM/DD/YYYY"), user: "Jill", amount: 6 },
+    { id: 10, date: moment("01/15/16", "MM/DD/YYYY"), user: "Jon", amount: 11 },
+    { id: 11, date: moment("01/15/16", "MM/DD/YYYY"), user: "Sam", amount: 1 },
+    { id: 12, date: moment("01/15/16", "MM/DD/YYYY"), user: "Jill", amount: 1 }
+]</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="header">02</div>
+        <div class="content">
+            <div class="inner-header">Define a set of Keys</div>
+            <div class="inner-content">
+                <div hljs hljs-language="typescript" hljs-no-escape>
+                    <pre>[white space fix, will be removed]
+this.keyMetricManager.addKey(
+    KeyName.Id,
+    "Id",
+    (d: number) => { return "" + d; },
+    (d: ICrossfilterOnlyData) => { return d.id; },
+    (d: number) => { return d; },
+    CrossfilterManager.ValueType.Number
+);
+this.keyMetricManager.addKey(
+    KeyName.User,
+    "User",
+    (d: string) => { return d; },
+    (d: ICrossfilterOnlyData) => { return d.user; },
+    (d: string) => { return d; },
+    CrossfilterManager.ValueType.String
+);
+this.keyMetricManager.addKey(
+    KeyName.Day,
+    "Day",
+    (d: Date) => { return moment(d).format("MM/DD/YYYY"); },
+    (d: ICrossfilterOnlyData) => { return d.date.clone(); },
+    (d: moment.Moment) => { return d.startOf("day"); },
+    CrossfilterManager.ValueType.DateTime
+)</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="header">03</div>
+        <div class="content">
+            <div class="inner-header">Define one or more Metrics</div>
+            <div class="inner-content">
+                <div hljs hljs-language="typescript" hljs-no-escape>
+                    <pre>[white space fix, will be removed]
+this.keyMetricManager.addMetric(
+    MetricName.Amount,
+    "Amount",
+    (d: number) => { return Util.commaFormatter[0](d); },
+    (p: Util.ILabelKeyValueTuple) => {
+        return p.value.value[MetricName.Amount];
+    },
+    (d: ICrossfilterOnlyData) => { return d.amount; },
+    (d: ICrossfilterOnlyData) => { return 1; },
+    (d: number) => {
+    return Util.commaFormatter[0](d); }
+)</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="header">04</div>
+        <div class="content">
+            <div class="inner-header">Build the Crossfilter and make groupings (because we are not going to use the charting manager in this example)</div>
+            <div class="inner-content">
+                <div hljs hljs-language="typescript" hljs-no-escape>
+                    <pre>[white space fix, will be removed]
+this.crossfilterManager = new CrossfilterManager.CrossfilterManager&lt;Examples.ISimpleData>
+    (this.data, KeyName.Id, this.keyMetricManager, eventManager);
+// given only a crossfilterManager, we are able to construct a chart without the rest of the lib
+// set up groupings
+let dayGrouping = new CrossfilterManager.CrossfilterGrouping&lt;Examples.ISimpleData>(
+    this.crossfilterManager,
+    KeyName.Day,
+    [MetricName.Amount]
+);
+let userGrouping = new CrossfilterManager.CrossfilterGrouping&lt;Examples.ISimpleData>(
+    this.crossfilterManager,
+    KeyName.User,
+    [MetricName.Amount]
+);</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="header">05</div>
+        <div class="content">
+            <div class="inner-header">Use our custom grouping in a basic chart</div>
+            <div class="inner-content">
+                <div hljs hljs-language="typescript" hljs-no-escape>
+                    <pre>[white space fix, will be removed]
+var chart = dc.barChart("#simple-dc-test");
+chart
+    .dimension(dayGrouping.dimension)
+    .group(dayGrouping.group)
+    .valueAccessor(this.keyMetricManager.getMetric(MetricName.Amount).valueFunc);
+chart.on("filtered", () => { eventManager.publish("filtered", this); });
+chart.render();</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

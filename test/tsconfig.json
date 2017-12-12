@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "target": "ES5",
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "declaration": false,
+    "outFile": "chartsSpec.js",
+    "noEmitOnError": true
+  }
+}

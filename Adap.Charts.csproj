@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Rebuild" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+    <ProjectGuid>{A49A33CB-64D4-4C2C-AD62-B1B2D68D3D72}</ProjectGuid>
+    <NuGetPackageImportStamp>89605357</NuGetPackageImportStamp>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <TypeScriptToolsVersion>1.4</TypeScriptToolsVersion>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <!-- Property Group for NodeTools/Target -->
+  <PropertyGroup>
+    <NpmExecutable>npm</NpmExecutable>
+    <GulpExecutable>gulp</GulpExecutable>
+    <GulpTaskName>build-$(Configuration)</GulpTaskName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NpmInstallCmd>$(NpmExecutable) install --loglevel error</NpmInstallCmd>
+    <RunGulpCmd>$(GulpExecutable) $(GulpTaskName)</RunGulpCmd>
+    <BuildDependsOn>
+			NpmInstall;
+			RunGulp;
+			$(BuildDependsOn);
+		</BuildDependsOn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Adap.Charts</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="app\app.css" />
+    <None Include="app\examples\examples.less" />
+    <Content Include="app\examples\examples.html" />
+    <Content Include="app\examples\original.tpl.html" />
+    <Content Include="gulp.config.js" />
+    <Content Include="index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="app\examples\example-builder.service.ts" />
+    <TypeScriptCompile Include="app\examples\original-charts.ts" />
+    <TypeScriptCompile Include="app\examples\original.controller.ts" />
+    <TypeScriptCompile Include="app\routes.ts" />
+    <TypeScriptCompile Include="app\config.ts" />
+    <Content Include="app\examples\crossfilter-only.tpl.html" />
+    <TypeScriptCompile Include="app\examples\crossfilter-only.controller.ts" />
+    <TypeScriptCompile Include="app\generate-nvd3-ts-interfaces.ts" />
+    <TypeScriptCompile Include="app\app.ts" />
+    <TypeScriptCompile Include="app\test-report.ctrl.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\one\abstract-one-filter-chart-view-model-base.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\nvd3\abstract-nvd3-coordinate-grid-chart-view-model.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\dc\abstract-dc-coordinate-grid-chart-view-model.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\nvd3\abstract-nvd3-chart-view-model-base.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\dc\abstract-dc-chart-view-model-base.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\scalar\abstract-scalar-chart-view-model-base.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\util.ts" />
+    <TypeScriptCompile Include="lib\crossfilter-manager\crossfilter-grouping.ts" />
+    <TypeScriptCompile Include="lib\crossfilter-manager\key-metric-manager.ts" />
+    <TypeScriptCompile Include="lib\crossfilter-manager\crossfilter-manager.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\chart-manager.ts" />
+    <TypeScriptCompile Include="lib\layout-manager\layout-manager.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\scalar\composite-scalar-chart.ts" />
+    <TypeScriptCompile Include="lib\crossfilter-manager\util.ts" />
+    <TypeScriptCompile Include="lib\layout-manager\util.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\one\one-filter-bar-chart.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\nvd3\line-plus-bar-chart.ts" />
+    <TypeScriptCompile Include="lib\shared\event-manager.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\angular\show-hover-parent-dir.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\angular\interactive-charts-components.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\abstract-chart-view-model-base.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\scalar\frozen-scalar-chart.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\nvd3\multi-chart.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\nvd3\sparkline-chart.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\nvd3\stacked-area-chart.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\dc\filter-bar-chart.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\dc\filter-chart-summary.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\dc\filter-line-chart.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\dc\filter-pie-chart.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\dc\filter-row-chart.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\nvd3\line-chart.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\nvd3\discrete-bar-chart.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\nvd3\multi-bar-chart.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\nvd3\nvd3-interfaces.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\nvd3\pie-chart.ts" />
+    <TypeScriptCompile Include="lib\chart-manager\scalar\simple-scalar-chart.ts" />
+    <TypeScriptCompile Include="lib\shared\defaults.ts" />
+    <TypeScriptCompile Include="lib\shared\util.ts" />
+    <TypeScriptCompile Include="test\chartsSpec.ts" />
+    <TypeScriptCompile Include="test\dcChartsSpec.ts" />
+    <TypeScriptCompile Include="test\nvd3ChartsSpec.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bower.json" />
+    <None Include="app\data\data.json" />
+    <None Include="gulpfile.js" />
+    <Content Include="karma.conf.js" />
+    <Content Include="lib\chart-manager\one\interactive-one-chart-accordion.tpl.html" />
+    <Content Include="lib\layout-manager\interactive-chart-list.tpl.html" />
+    <Content Include="lib\chart-manager\one\interactive-one-filter-chart.tpl.html" />
+    <Content Include="lib\chart-manager\nvd3\interactive-nvd3-chart.tpl.html" />
+    <Content Include="lib\chart-manager\scalar\interactive-scalar-chart.tpl.html" />
+    <Content Include="lib\chart-manager\dc\interactive-dc-chart.tpl.html" />
+    <Content Include="tsconfig.json" />
+    <Content Include="lib\chart-manager\scalar\scalar-chart.less" />
+    <Content Include="lib\chart-manager\one\one-chart.less" />
+    <Content Include="lib\layout-manager\layout-manager.less" />
+    <Content Include="lib\chart-manager\nvd3\nvd3-chart.less" />
+    <Content Include="lib\chart-manager\dc\dc-chart.less" />
+    <None Include="tslint.json" />
+    <None Include="lib\chart-manager\chart-manager.less" />
+    <None Include="package.json" />
+    <None Include="packages.config" />
+    <None Include="README.md" />
+    <Content Include="typings.json" />
+    <Content Include="lib\chart-manager\interactive-chart.tpl.html" />
+    <Content Include="lib\chart-manager\dc\interactive-filter-chart-summary.tpl.html" />
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50234/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- Custom targets-->
+  <Target Name="Rebuild">
+    <CallTarget Targets="RunGulp" />
+  </Target>
+  <Target Name="NpmInstall">
+    <Exec Command="$(NpmInstallCmd)" LogStandardErrorAsError="true" WorkingDirectory="$(MSBuildProjectDirectory)" Condition="Exists('$(MSBuildProjectDirectory)\package.json')" />
+  </Target>
+  <Target Name="RunGulp" DependsOnTargets="NpmInstall">
+    <Exec Command="$(RunGulpCmd)" LogStandardErrorAsError="true" WorkingDirectory="$(MSBuildProjectDirectory)" Condition="Exists('$(MSBuildProjectDirectory)\gulpfile.js')" />
+  </Target>
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <!-- Overriding targets which when absent cause warnings from common targets -->
+  <Target Name="CoreCompile" />
+  <Target Name="CreateManifestResourceNames" />
+</Project>

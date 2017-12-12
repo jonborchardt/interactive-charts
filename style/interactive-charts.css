@@ -1,0 +1,433 @@
+.orderBy {
+  font-family: "open sans";
+  font-weight: bold;
+  font-size: 11px;
+  position: absolute;
+  opacity: 0.5;
+  margin-top: -5px;
+  margin-left: 21px;
+}
+.orderBy select {
+  margin: 2px 35px 1px 10px;
+  max-width: 215px;
+}
+.titleHr {
+  margin: 5px 0 5px 15px;
+}
+.dc-chart,
+.genericOneFilterChart {
+  margin: 15px 5px 0 0;
+  padding: 0 4px 0 0;
+}
+.dc-chart g.row text,
+.genericOneFilterChart g.row text {
+  fill: darkslategray;
+}
+.dc-chart text,
+.genericOneFilterChart text {
+  font-family: "open sans";
+}
+.dc-chart .title,
+.genericOneFilterChart .title,
+.dc-chart .filter,
+.genericOneFilterChart .filter {
+  margin-left: 20px;
+  margin-right: 6px;
+}
+.dc-chart .filter,
+.genericOneFilterChart .filter {
+  font-size: 10px;
+  display: block;
+  padding-bottom: 5px;
+}
+.dc-chart .one-filter-title,
+.genericOneFilterChart .one-filter-title,
+.dc-chart .reset-btn,
+.genericOneFilterChart .reset-btn {
+  display: inline-block;
+  padding-bottom: 6px;
+}
+.dc-chart a .reset,
+.genericOneFilterChart a .reset {
+  margin-right: 5px;
+  font-size: 11px;
+  font-weight: normal;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+}
+.dc-chart svg:not(.unit-header,.axis),
+.genericOneFilterChart svg:not(.unit-header,.axis) {
+  width: auto;
+}
+.dc-chart .axis .tick text,
+.genericOneFilterChart .axis .tick text {
+  fill: #D2D2D2;
+  font-size: 10px;
+  font: 10px sans-serif;
+  /* Makes it so the user can't accidentally click and select text that is meant as a label only */
+  -webkit-user-select: none;
+  /* Chrome/Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10 */
+  -o-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+.dc-chart .axis .tick line,
+.genericOneFilterChart .axis .tick line {
+  stroke: #D2D2D2;
+  shape-rendering: crispEdges;
+}
+.dc-chart .axis .tick line.grid-line,
+.genericOneFilterChart .axis .tick line.grid-line {
+  stroke: #ccc;
+}
+.dc-chart .axis path.domain,
+.genericOneFilterChart .axis path.domain {
+  stroke: #D2D2D2;
+  fill: none;
+  shape-rendering: crispEdges;
+}
+div.nvd3 .title strong,
+div.scalarChart .title strong {
+  margin: 0 10px 0 20px;
+  display: inline-block;
+}
+.text-lowercase {
+  text-transform: lowercase;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+.text-capitalize {
+  text-transform: capitalize;
+}
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+div.column {
+  float: left;
+}
+.filterChartSummary {
+  width: 100%;
+  margin: 5px 5px 1px 5px;
+  padding: 5px 10px 4px 10px;
+  border-bottom: 1px solid darkgray;
+}
+.filterChartSummary span.glyphicon {
+  padding: 3px;
+}
+.hidePoints .nv-line .nvd3.nv-scatter .nv-groups .nv-point {
+  fill-opacity: 0 !important;
+}
+.nv-multiBarHorizontalChart .nv-x {
+  transform: translate(0, 8px);
+  -ms-transform: translate(0, 8px);
+  /* IE 9 */
+  -webkit-transform: translate(0, 8px);
+  /* Safari and Chrome */
+  -o-transform: translate(0, 8px);
+  /* Opera */
+  -moz-transform: translate(0, 8px);
+  /* Firefox */
+}
+nvd3 text {
+  font-family: "open sans";
+}
+nvd3 .title {
+  font-weight: bold;
+}
+nvd3 .nv-line .nvd3.nv-scatter .nv-groups .nv-point {
+  fill-opacity: 0.8 !important;
+}
+nvd3 .nv-axis {
+  fill: #9090B0;
+}
+nvd3 .nv-axis .tick text {
+  fill: #9090B0;
+  font-size: 10px;
+}
+nvd3 .nv-axis .tick line {
+  stroke: #f0f0f0;
+}
+nvd3 .nv-axis .nv-axisMaxMin text {
+  fill: #A0A9A9;
+  font-size: 10px;
+}
+nvd3 .nv-pieLabels .nv-label text {
+  fill: #8080A0 !important;
+  font-size: 10px;
+}
+nvd3 div.nvtooltip {
+  padding: 5px;
+}
+nvd3 div.nvtooltip h4,
+nvd3 div.nvtooltip p {
+  text-align: center;
+  white-space: normal;
+  margin: 0 auto;
+  padding: 0 5px;
+  max-width: 240px;
+}
+nvd3 div.nvtooltip p {
+  margin: -3px auto;
+  color: #654321;
+}
+.genericOneFilterChart {
+  user-select: none;
+}
+.genericOneFilterChart a.reset {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: normal;
+}
+.genericOneFilterChart a.reset span {
+  padding: 5px 6px 3px 6px;
+}
+.genericOneFilterChart .titleHr {
+  margin: 0 -2px 5px 0;
+}
+.genericOneFilterChart .axis .tick line,
+.genericOneFilterChart .axis .tick text {
+  fill: #D2D2D2;
+}
+.genericOneFilterChart .has-tooltip .tooltip-text {
+  pointer-events: none;
+  position: absolute;
+}
+.genericOneFilterChart .has-tooltip .inner-tooltip-text {
+  top: -76px;
+  display: none;
+  color: #000;
+  text-decoration: none;
+  padding: 6px 8px 2px 8px;
+  border-radius: 4px;
+  z-index: 1;
+  font-size: 11px;
+}
+.genericOneFilterChart .has-tooltip:hover .inner-tooltip-text {
+  display: block;
+  position: relative;
+  background-color: rgba(248, 248, 248, 0.85);
+  border: 1px solid #9a9a9a;
+  margin: 2px 10px;
+}
+.genericOneFilterChart .has-tooltip:hover .inner-tooltip-text .value {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 5px;
+  color: #01abd4;
+}
+.genericOneFilterChart .inner-tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #9a9a9a transparent transparent transparent;
+}
+.genericOneFilterChart .title {
+  margin-left: 10px;
+}
+.genericOneFilterChart a.reset span {
+  margin-top: -18px;
+}
+.genericOneFilterChart table {
+  table-layout: fixed;
+  line-height: normal;
+}
+.genericOneFilterChart table .selectable-row {
+  cursor: pointer;
+}
+.genericOneFilterChart table .selectable-row input[type="checkbox"] {
+  height: 16px;
+  width: 16px;
+  margin: auto 0;
+}
+.genericOneFilterChart table .selectable-row .dimension-name {
+  color: #5e5e5e;
+  padding: 4px 6px 7px 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.genericOneFilterChart table .selectable-row .dimension-name-tooltip:not(.active-tooltip) {
+  display: none;
+}
+.genericOneFilterChart table .selectable-row .dimension-name-tooltip.active-tooltip {
+  padding: 8px 10px;
+  margin-top: -8px;
+  z-index: 1;
+  font-size: 11px;
+  color: #353535;
+  background-color: rgba(248, 248, 248, 0.85);
+  border: 1px solid #9a9a9a;
+  border-radius: 4px;
+  max-width: 180px;
+  white-space: normal;
+  word-wrap: break-word;
+}
+.genericOneFilterChart table .selectable-row .arrow-container {
+  display: inline-block;
+  margin-left: -16px;
+  margin-right: 4px;
+  background-color: rgba(248, 248, 248, 0.85);
+  color: #9a9a9a;
+  line-height: 0.18em;
+}
+.genericOneFilterChart table .selectable-row .arrow-container .glyphicon {
+  top: 0;
+  line-height: 0.8;
+  font-weight: 10;
+  font-size: 9px;
+}
+.genericOneFilterChart table .selectable-row:hover {
+  background: #f6f6f6;
+}
+.genericOneFilterChart .axis-container .unit-on-axis {
+  font-size: 9px;
+  font-weight: bold;
+  color: #D2D2D2;
+  fill: #D2D2D2;
+}
+.genericOneFilterChart .unit-header {
+  padding-right: 10px;
+  margin-bottom: -5px;
+  font-size: 9px;
+  color: #D2D2D2;
+}
+.genericOneFilterChart .filtered-out .foreground {
+  fill: #C3C3C3;
+}
+.one-accordion {
+  margin-bottom: -5px;
+  margin-top: 5px;
+}
+.one-accordion .panel-default .panel-body {
+  padding: 5px;
+}
+.one-accordion .panel-default .panel-heading {
+  padding: 10px;
+  height: 45px;
+  cursor: pointer;
+}
+.one-accordion .panel-default .panel-heading h2 {
+  float: left;
+  margin: 5px 0;
+}
+.one-accordion .panel-default .panel-heading .pull-right {
+  margin: 5px 0;
+}
+.one-accordion .accordion-toggle:after {
+  /* symbol for "opening" panels */
+  font-family: "Glyphicons Halflings";
+  content: "\2212";
+  color: inherit;
+  float: left;
+  margin-right: 6px;
+}
+.one-accordion .panel-heading.collapsed .accordion-toggle:after {
+  /* symbol for "collapsed" panels */
+  content: "+";
+}
+.frozen .scalarChart div {
+  display: inline-block;
+}
+.frozen .scalarChart .innerBox {
+  background-color: ghostwhite;
+  float: left;
+}
+.frozen .scalarChart .innerBox div.value {
+  color: teal;
+}
+.scalarChart .innerBox {
+  position: relative;
+  font-family: "open sans";
+  padding: 10px;
+  webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+.scalarChart .innerBox .key {
+  clear: both;
+  font-size: 11px;
+  font-weight: 600;
+  margin: 6px 0;
+}
+.scalarChart .innerBox .value {
+  position: relative;
+  width: 100%;
+  bottom: 0px;
+  left: 0;
+  text-align: center;
+  color: teal;
+  font-size: 20px;
+  font-weight: 200;
+}
+.scalarChart .innerBox .unit {
+  font-size: 14px;
+  font-weight: 200;
+  color: #7AC4F1;
+}
+.scalarChart .innerBox .rowKey {
+  display: inline-block;
+  bottom: 0px;
+  left: 0;
+  font-size: 20px;
+  font-weight: 200;
+  text-align: right;
+  color: teal;
+}
+.scalarChart .innerBox .rowUnit {
+  display: inline-block;
+  color: #7AC4F1;
+  font-size: 14px;
+  font-weight: 200;
+  min-width: 82px;
+  padding-left: 8px;
+  text-align: left;
+}
+.scalarChart .innerBox .highlight-largeText {
+  font-size: 20px;
+  font-weight: bold;
+}
+.scalar-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.metric-group {
+  display: flex;
+  flex-direction: column;
+}
+.diff-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  min-height: 30px;
+}
+.glyphicon-triangle-top {
+  color: #2e7a71;
+}
+.glyphicon-triangle-bottom {
+  color: #d75858;
+}
+.glyphicon-minus {
+  padding-right: 4px;
+  color: #b5b5b5;
+}
+
+/*# sourceMappingURL=interactive-charts.css.map*/
