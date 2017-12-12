@@ -178,6 +178,20 @@ nvd3 div.nvtooltip p {
   margin: -3px auto;
   color: #654321;
 }
+.metric-toggle {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.metric-toggle .metric-group-selector {
+  display: inline-block;
+  min-width: 64px;
+  border: 1px solid lightgray;
+}
+.metric-toggle .inactive-metric {
+  cursor: pointer;
+}
 .genericOneFilterChart {
   user-select: none;
 }

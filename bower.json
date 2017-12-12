@@ -2,10 +2,10 @@
   "name": "adap-charts",
   "version": "3.3.1",
   "description": "Interactive Charts",
-  "license": "AOL Internal",
+  "license": "MIT License",
   "private": true,
   "authors": [
-    "jon.borchardt@teamaol.com"
+    "jon.borchardt@gmail.com"
   ],
   "main": [
     "dist/adap-charts.js",
@@ -29,6 +29,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://code.onetv.aol.com/scm/tvbaseui/charts.git"
+    "url": "https://github.com/jonborchardt/interactive-charts.git"
   }
 }

@@ -1,0 +1,13 @@
+/node_modules
+/dist
+/style/interactive-charts.css.map
+/style/interactive-charts.js
+/style/interactive-charts.js.map
+/app/interactive-charts.css
+/app/interactive-charts.css.map
+/app/interactive-charts.js
+/app/interactive-charts.js.map
+/.vs
+/obj
+/bin
+/yarn-error.log
